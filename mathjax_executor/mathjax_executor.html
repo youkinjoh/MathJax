@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>mathjax executor</title>
+<script type="text/x-bookmarklet">
+(function(t,c){
+t=document.createElement("style");
+t.type="text/css";
+t.textContent=".MathJax{margin:0.5em;padding:1em;border:solid #666666 1px;display:inline-block;}";
+document.body.appendChild(t);
+c=document.createElement("script");
+c.type="text/javascript";
+c.src="//youkinjoh.github.io/MathJax/MathJax.js?config=AM_HTMLorMML-full";
+document.body.appendChild(c);
+})();
+</script>
+<script>
+function initialize() {
+  var codes = getCodes();
+  codes
+      .map(function(code) {return "javascript:" + code})
+      .map(makeLink.bind(null, document.title))
+      .map(function(link) {
+        document.body.appendChild(link);
+      });
+}
+function getCodes() {
+  var codes = [];
+  var scripts = Array.prototype.slice.call(document.getElementsByTagName("script"));
+  codes = scripts
+      .filter(function(elem) {return String(elem.type).match(/^text\/x-bookmarklet(;.*)?$/)})
+      .map(function(elem) {return elem.textContent;});
+  return codes;
+}
+function makeLink(text, uri) {
+  var link = document.createElement("a");
+  link.textContent = text;
+  link.href = uri;
+  return link;
+}
+window.addEventListener("load", initialize);
+</script>
+</head>
+<body>
+</body>
+</html>
