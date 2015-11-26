@@ -5,6 +5,9 @@
 <title>mathjax executor</title>
 <script type="text/x-bookmarklet">
 (function(t,c){
+if(window.MathJax){
+MathJax.Hub.Typeset();
+}else{
 t=document.createElement("style");
 t.type="text/css";
 t.textContent=".MathJax{margin:0.5em;padding:1em;border:solid #666666 1px;display:inline-block;}";
@@ -13,6 +16,7 @@ c=document.createElement("script");
 c.type="text/javascript";
 c.src="//youkinjoh.github.io/MathJax/MathJax.js?config=AM_HTMLorMML-full";
 document.body.appendChild(c);
+}
 })();
 </script>
 <script>
